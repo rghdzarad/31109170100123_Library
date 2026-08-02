@@ -3,7 +3,15 @@
 # All data is dummy content, used for practicing Git & GitHub.
 
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
+print("Student Grades Analysis")
+print("loading grades from CSV file...")
+print("analyzing grades...")
+print("done!")
+print("Here are the results:")
 # Load the grades from the CSV file.
 grades = pd.read_csv("grades.csv")
 
