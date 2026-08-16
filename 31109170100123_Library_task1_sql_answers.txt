@@ -1,0 +1,100 @@
+5 SQL Questions and Answers :  
+-------------------------------------------------------------------------------
+
+Question 1: How much is each member borrowing?
+
++----+-----------+------------+-----------+--------------------------+
+|    | member_id | first_name | last_name | the_number_of_borrowings |
++----+-----------+------------+-----------+--------------------------+
+| 0  | 1017      | Adam       | Badr      | 2                        |
+| 1  | 1065      | Adam       | Fahmy     | 17                       |
+| 2  | 1053      | Adam       | Shafik    | 5                        |
+| 3  | 1057      | Ahmed      | Fahmy     | 10                       |
+| 4  | 1049      | Ahmed      | Gamal     | 1                        |
+| .. | ...       | ...        | ...       | ...                      |
+| 57 | 1005      | Youssef    | Halim     | 3                        |
+| 58 | 1024      | Youssef    | Hegazy    | 17                       |
+| 59 | 1061      | Ziad       | Fahmy     | 8                        |
+| 60 | 1013      | Ziad       | Fouad     | 2                        |
+| 61 | 1008      | Ziad       | Saleh     | 19                       |
++----+-----------+------------+-----------+--------------------------+
+
+If we made it in descending order : 
+
++----+-----------+------------+-----------+--------------------------+
+|    | member_id | first_name | last_name | the_number_of_borrowings |
++----+-----------+------------+-----------+--------------------------+
+| 0  | 1034      | Aya        | Wahba     | 25                       |
+| 1  | 1044      | Sherif     | Saleh     | 21                       |
+| 2  | 1008      | Ziad       | Saleh     | 19                       |
+| 3  | 1027      | Mostafa    | Fouad     | 18                       |
+| 4  | 1010      | Nour       | Nabil     | 18                       |
+| .. | ...       | ...        | ...       | ...                      |
+| 57 | 1035      | Karim      | Fahmy     | 1                        |
+| 58 | 1006      | Layla      | Mansour   | 1                        |
+| 59 | 1036      | Lina       | Zaki      | 1                        |
+| 60 | 1052      | Retaj      | Adel      | 1                        |
+| 61 | 1001      | Salma      | Ibrahim   | 1                        |
++----+-----------+------------+-----------+--------------------------+
+
+Question 2: Which books match a chosen author pattern?
+I chose the authors with the beginning of M
+
++---+----------------+-----------------------+
+|   | author         | title                 |
++---+----------------+-----------------------+
+| 0 | Mahmoud Rafei  | Storms and Sailboats  |
+| 1 | Mahmoud Rafei  | The Clockwork Orchard |
+| 2 | Mona Kholoussy | Notes from the Delta  |
+| 3 | Mona Kholoussy | The Glass Beehive     |
++---+----------------+-----------------------+
+
+
+Question 3: What are the most popular books?
+
++---+-----------------------+--------------------------+
+|   | title                 | the_number_of_borrowings |
++---+-----------------------+--------------------------+
+| 0 | The Silver Kite       | 57                       |
+| 1 | Fossils and Fireflies | 55                       |
+| 2 | Circuits for Beginners| 46                       |
+| 3 | Kites Over Cairo      | 38                       |
+| 4 | Storms and Sailboats  | 25                       |
++---+-----------------------+--------------------------+
+
+Question 4: What are the most effective active readers?
+
++---+-----------+------------+-----------+--------------------------+
+|   | member_id | first_name | last_name | the_number_of_borrowings |
++---+-----------+------------+-----------+--------------------------+
+| 0 | 1034      | Aya        | Wahba     | 25                       |
+| 1 | 1044      | Sherif     | Saleh     | 21                       |
+| 2 | 1008      | Ziad       | Saleh     | 19                       |
+| 3 | 1027      | Mostafa    | Fouad     | 18                       |
+| 4 | 1010      | Nour       | Nabil     | 18                       |
+| 5 | 1065      | Adam       | Fahmy     | 17                       |
+| 6 | 1018      | Ahmed      | Shafik    | 17                       |
+| 7 | 1024      | Youssef    | Hegazy    | 17                       |
+| 8 | 1030      | Reem       | Osman     | 16                       |
+| 9 | 1047      | Sara       | Rashad    | 16                       |
++---+-----------+------------+-----------+--------------------------+
+
+Question 5: What does a neighbourhood's activity look like further back in time? (Maadi)
+
++---+-----------+------------+-----------+--------------+--------------------------+
+|   | member_id | first_name | last_name | neighborhood | the_number_of_borrowings |
++---+-----------+------------+-----------+--------------+--------------------------+
+| 0 | 1019      | Mostafa    | Wahba     | Maadi        | 3                        |
+| 1 | 1002      | Fares      | Saleh     | Maadi        | 2                        |
+| 2 | 1011      | Menna      | Halim     | Maadi        | 2                        |
+| 3 | 1013      | Ziad       | Fouad     | Maadi        | 2                        |
+| 4 | 1017      | Adam       | Badr      | Maadi        | 2                        |
+| 5 | 1001      | Salma      | Ibrahim   | Maadi        | 1                        |
+| 6 | 1006      | Layla      | Mansour   | Maadi        | 1                        |
+| 7 | 1009      | Hassan     | Saleh     | Maadi        | 1                        |
+| 8 | 1014      | Habiba     | Nabil     | Maadi        | 1                        |
+| 9 | 1004      | Fares      | Wahba     | Maadi        | 0                        |
++---+-----------+------------+-----------+--------------+--------------------------+
+
+
+
