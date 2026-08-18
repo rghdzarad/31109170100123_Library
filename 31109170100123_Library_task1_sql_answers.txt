@@ -97,10 +97,20 @@ Question 5: What does a neighbourhood's activity look like further back in time?
 +---+-----------+------------+-----------+--------------+--------------------------+
 
 What is the difference between the API and web scraping?
-To begin with, Application Programming Interfaces (APIs) represent 2 fundamentally different approaches to data acquisition (data collection from websites). APIs provide a structured and efficient mechanism for data transfer, enabling direct access to specified data fields and collecting them in an organised, machine-readable format (JSON files) with great speed. This ensures high reliability, but it is limited, and you can't collect all the data (limited data access by the API provider). You must also respect the website's terms and policies (robot.txt) and avoid making too many requests, so the website server doesn't stop.
-On the other hand, web scraping involves extracting data yourself programmatically (parsing the entire content of the web pages, especially HTML tables). While web scraping offers broader access to any publicly visible data, it is less efficient, prone to data quality issues due to inconsistent formatting, and highly sensitive to changes in website structure. For the library case, I used web scraping because the website for the reading kick-off event doesn't have an API, so I used the pandas function pd.read_html().
+To begin with, Application Programming Interfaces (APIs) represent 2 fundamentally different approaches to data acquisition (data collection from websites). APIs provide a structured and efficient mechanism for data transfer, enabling direct access to specified data fields and the collection of data in an organised, machine-readable format (JSON files) at high speed. This ensures high reliability, but it is limited, and you can't collect all the data (limited data access by the API provider). You must also respect the website's terms and policies (robot.txt) and avoid making too many requests, so the website server doesn't stop.
+On the other hand, web scraping involves extracting data programmatically (parsing the full content of web pages, especially HTML tables). While web scraping offers broader access to any publicly visible data, it is less efficient, prone to data quality issues due to inconsistent formatting, and highly sensitive to changes in website structure. For the library case, I used web scraping because the website for the reading kick-off event doesn't have an API, so I used the pandas function pd.read_html().
 
 
 What did I do in the notebook for task 1? 
 Task 1: Data Collection and Combination Processes 
-The Data collection
+The Data collection and Combination process began by setting up the Python notebook and importing the necessary Python libraries, and the 3 data sources available to me are: an HTML website, an SQL database, and a JSON file. I imported the 3 sources of data and answered the 5 SQL questions by talking to the database using the SQLite 3 Python library and got all the answers, and after that, I began the combination process by following these steps : 
+1. Merged the checkouts and members tables in the SQL database.
+2. Merged the merged SQL dataset with the JSON file.
+3. Worked on the inconsistent formatting of the main columns (member_id, book_id, checkouts_id) to prevent any errors during the combination process.
+4. Merged the SQL JSON dataset with the HTML table
+
+"I used .merge () for the merging process."
+
+And before the merging process, I used pd.read_html() for the web scraping through the Kick-off webpage.
+
+And then, at the end of Task 1, I turned the dataset into a pandas DataFrame and then into a downloadable CSV file to start the cleaning process and the Insights generation process.
