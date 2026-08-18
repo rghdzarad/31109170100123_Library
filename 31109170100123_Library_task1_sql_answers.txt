@@ -38,7 +38,7 @@ If we made it in descending order :
 +----+-----------+------------+-----------+--------------------------+
 
 Question 2: Which books match a chosen author pattern?
-I chose the authors with the beginning of M
+I chose the authors with the beginning of M.
 
 +---+----------------+-----------------------+
 |   | author         | title                 |
@@ -96,5 +96,11 @@ Question 5: What does a neighbourhood's activity look like further back in time?
 | 9 | 1004      | Fares      | Wahba     | Maadi        | 0                        |
 +---+-----------+------------+-----------+--------------+--------------------------+
 
+What is the difference between the API and web scraping?
+To begin with, Application Programming Interfaces (APIs) represent 2 fundamentally different approaches to data acquisition (data collection from websites). APIs provide a structured and efficient mechanism for data transfer, enabling direct access to specified data fields and collecting them in an organised, machine-readable format (JSON files) with great speed. This ensures high reliability, but it is limited, and you can't collect all the data (limited data access by the API provider). You must also respect the website's terms and policies (robot.txt) and avoid making too many requests, so the website server doesn't stop.
+On the other hand, web scraping involves extracting data yourself programmatically (parsing the entire content of the web pages, especially HTML tables). While web scraping offers broader access to any publicly visible data, it is less efficient, prone to data quality issues due to inconsistent formatting, and highly sensitive to changes in website structure. For the library case, I used web scraping because the website for the reading kick-off event doesn't have an API, so I used the pandas function pd.read_html().
 
 
+What did I do in the notebook for task 1? 
+Task 1: Data Collection and Combination Processes 
+The Data collection
