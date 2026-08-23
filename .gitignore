@@ -1,0 +1,13 @@
+# Files we don't want Git to track.
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/
