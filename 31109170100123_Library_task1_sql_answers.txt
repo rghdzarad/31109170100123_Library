@@ -250,8 +250,6 @@ The Data collection and Combination process began by setting up the Python noteb
 4. Merged the SQL JSON dataset with the HTML table
 
 "I used .merge () for the merging process."
-and how = "outer" to get all the rows and get all the data and do not lose anything
-
 And before the merging process, I used pd.read_html() for the web scraping through the Kick-off webpage.
 
 And then, at the end of Task 1, I turned the dataset into a pandas DataFrame and then into a downloadable CSV file to start the cleaning process and the Insights generation process.
