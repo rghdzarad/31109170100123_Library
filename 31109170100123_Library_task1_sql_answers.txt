@@ -1,101 +1,240 @@
-5 SQL Questions and Answers :  
--------------------------------------------------------------------------------
+                                                                                   5 SQL Questions and Answers :  
 
 Question 1: How much is each member borrowing?
 
-+----+-----------+------------+-----------+--------------------------+
-|    | member_id | first_name | last_name | the_number_of_borrowings |
-+----+-----------+------------+-----------+--------------------------+
-| 0  | 1017      | Adam       | Badr      | 2                        |
-| 1  | 1065      | Adam       | Fahmy     | 17                       |
-| 2  | 1053      | Adam       | Shafik    | 5                        |
-| 3  | 1057      | Ahmed      | Fahmy     | 10                       |
-| 4  | 1049      | Ahmed      | Gamal     | 1                        |
-| .. | ...       | ...        | ...       | ...                      |
-| 57 | 1005      | Youssef    | Halim     | 3                        |
-| 58 | 1024      | Youssef    | Hegazy    | 17                       |
-| 59 | 1061      | Ziad       | Fahmy     | 8                        |
-| 60 | 1013      | Ziad       | Fouad     | 2                        |
-| 61 | 1008      | Ziad       | Saleh     | 19                       |
-+----+-----------+------------+-----------+--------------------------+
+The Code : 
+print("Question 1: How much is each member borrowing?")
+time.sleep(0.5)
+print("The answer : ")
+print()
+Q1 = """SELECT members.member_id,
+                  members.first_name,
+                  members.last_name,
+                  COUNT(checkouts.checkout_id) AS the_number_of_borrowings
+FROM checkouts
+JOIN members ON checkouts.member_id = members.member_id
+GROUP BY members.first_name, members.last_name
+"""
+run(Q1)
+
+The Answer :
++-------+-----------+------------+-----------+--------------------------+
+| Index | member_id | first_name | last_name | the_number_of_borrowings |
++-------+-----------+------------+-----------+--------------------------+
+
+| 0     | 1017      | Adam       | Badr      | 2                        |
+| 1     | 1065      | Adam       | Fahmy     | 17                       |
+| 2     | 1053      | Adam       | Shafik    | 5                        |
+| 3     | 1057      | Ahmed      | Fahmy     | 10                       |
+| 4     | 1049      | Ahmed      | Gamal     | 1                        |
+| ...   | ...       | ...        | ...       | ...                      |
+| 57    | 1005      | Youssef    | Halim     | 3                        |
+| 58    | 1024      | Youssef    | Hegazy    | 17                       |
+| 59    | 1061      | Ziad       | Fahmy     | 8                        |
+| 60    | 1013      | Ziad       | Fouad     | 2                        |
+| 61    | 1008      | Ziad       | Saleh     | 19                       |
++-------+-----------+------------+-----------+--------------------------+
+
+Description : 
+This dataset structures inventory interactions across 62 unique entries (indexed 0 to 61) tracking four main attributes: a unique member_id, full member names, and their aggregate transaction history under the_number_of_borrowings. The metrics reveal a high variance in user engagement, spanning from a single checkout by Ahmed Gamal to a peak of 19 by Ziad Saleh. Analytically, the presence of recurring surnames like "Fahmy" across separate high-volume records indicates potential household or group activity clusters, highlighting distinct pockets of elevated user interaction within the broader system.
 
 If we made it in descending order : 
 
-+----+-----------+------------+-----------+--------------------------+
-|    | member_id | first_name | last_name | the_number_of_borrowings |
-+----+-----------+------------+-----------+--------------------------+
-| 0  | 1034      | Aya        | Wahba     | 25                       |
-| 1  | 1044      | Sherif     | Saleh     | 21                       |
-| 2  | 1008      | Ziad       | Saleh     | 19                       |
-| 3  | 1027      | Mostafa    | Fouad     | 18                       |
-| 4  | 1010      | Nour       | Nabil     | 18                       |
-| .. | ...       | ...        | ...       | ...                      |
-| 57 | 1035      | Karim      | Fahmy     | 1                        |
-| 58 | 1006      | Layla      | Mansour   | 1                        |
-| 59 | 1036      | Lina       | Zaki      | 1                        |
-| 60 | 1052      | Retaj      | Adel      | 1                        |
-| 61 | 1001      | Salma      | Ibrahim   | 1                        |
-+----+-----------+------------+-----------+--------------------------+
++-------+-----------+------------+-----------+--------------------------+
+| Index | member_id | first_name | last_name | the_number_of_borrowings |
++-------+-----------+------------+-----------+--------------------------+
+
+| 0     | 1034      | Aya        | Wahba     | 25                       |
+| 1     | 1044      | Sherif     | Saleh     | 21                       |
+| 2     | 1008      | Ziad       | Saleh     | 19                       |
+| 3     | 1027      | Mostafa    | Fouad     | 18                       |
+| 4     | 1010      | Nour       | Nabil     | 18                       |
+| ...   | ...       | ...        | ...       | ...                      |
+| 57    | 1035      | Karim      | Fahmy     | 1                        |
+| 58    | 1006      | Layla      | Mansour   | 1                        |
+| 59    | 1036      | Lina       | Zaki      | 1                        |
+| 60    | 1052      | Retaj      | Adel      | 1                        |
+| 61    | 1001      | Salma      | Ibrahim   | 1                        |
++-------+-----------+------------+-----------+--------------------------+
+----------------------------------------------------------------------------------------------------------------------------------------------------
 
 Question 2: Which books match a chosen author pattern?
 I chose the authors with the beginning of M.
 
-+---+----------------+-----------------------+
-|   | author         | title                 |
-+---+----------------+-----------------------+
-| 0 | Mahmoud Rafei  | Storms and Sailboats  |
-| 1 | Mahmoud Rafei  | The Clockwork Orchard |
-| 2 | Mona Kholoussy | Notes from the Delta  |
-| 3 | Mona Kholoussy | The Glass Beehive     |
-+---+----------------+-----------------------+
+The Code :
+print("Question 2 : Which books match a choosen author pattern ?")
+time.sleep(0.5)
+print("I chose the authors with the beginning of M")
+time.sleep(1)
+print("The answer : ")
+print()
+Q2 = """SELECT author, title
+From books
+WHERE author Like 'M%'
+"""
+run(Q2)
 
+The Answer :
++-------+-----------------+------------------------+
+| Index | author          | title                  |
++-------+-----------------+------------------------+
+
+| 0     | Mahmoud Rafei   | Storms and Sailboats   |
+| 1     | Mahmoud Rafei   | The Clockwork Orchard  |
+| 2     | Mona Kholoussy  | Notes from the Delta   |
+| 3     | Mona Kholoussy  | The Glass Beehive      |
++-------+-----------------+------------------------+
+
+Description : 
+This dataset catalogs a collection of literary works by structuring entries across two primary attributes: the creator's identity under author and the corresponding book name under title. The dataset tracks unique literary contributions across 4 entries (indexed 0 to 3), detailing multiple distinct works mapped to each individual writer. Analytically, the recurring presence of creators like Mahmoud Rafei and Mona Kholoussy with multiple consecutive entries indicates a concentrated inventory focused on specific prolific writers rather than a broad, single-title assortment.
+----------------------------------------------------------------------------------------------------------------------------------------------------
 
 Question 3: What are the most popular books?
 
-+---+-----------------------+--------------------------+
-|   | title                 | the_number_of_borrowings |
-+---+-----------------------+--------------------------+
-| 0 | The Silver Kite       | 57                       |
-| 1 | Fossils and Fireflies | 55                       |
-| 2 | Circuits for Beginners| 46                       |
-| 3 | Kites Over Cairo      | 38                       |
-| 4 | Storms and Sailboats  | 25                       |
-+---+-----------------------+--------------------------+
+The code :
+print("Question 3 : What are the most popular books ?")
+time.sleep(0.5)
+print("The answer : ")
+print()
+Q3 = """SELECT bookS.title,
+               COUNT(checkouts.checkout_id) AS the_number_of_borrowings
+FROM checkouts
+JOIN books ON checkouts.book_id = books.book_id
+GROUP BY books.title
+ORDER BY the_number_of_borrowings DESC LIMIT 5
+"""
+
+run(Q3)
+
+The Answer :
++-------+-----------------------+--------------------------+
+| Index | title                 | the_number_of_borrowings |
++-------+-----------------------+--------------------------+
+
+| 0     | The Silver Kite       | 57                       |
+| 1     | Fossils and Fireflies | 55                       |
+| 2     | Circuits for Beginners| 46                       |
+| 3     | Kites Over Cairo      | 38                       |
+| 4     | Storms and Sailboats  | 25                       |
++-------+-----------------------+--------------------------+
+
+The Description : 
+This dataset logs literary demand by tracking five unique entries across two primary attributes: the specific book name under title and its total circulation history under the_number_of_borrowings. The metrics reveal a high level of reader engagement across the listed items, with individual circulation numbers peaking at 57 checkouts for "The Silver Kite" and tapering down to 25 checkouts for "Storms and Sailboats". Analytically, the strong performance of diverse subject matter—ranging from specialized technical guides like "Circuits for Beginners" with 46 checkouts to fiction pieces—indicates a varied reader baseline with balanced, high-volume interest across both academic and narrative categories.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
 
 Question 4: What are the most effective active readers?
 
-+---+-----------+------------+-----------+--------------------------+
-|   | member_id | first_name | last_name | the_number_of_borrowings |
-+---+-----------+------------+-----------+--------------------------+
-| 0 | 1034      | Aya        | Wahba     | 25                       |
-| 1 | 1044      | Sherif     | Saleh     | 21                       |
-| 2 | 1008      | Ziad       | Saleh     | 19                       |
-| 3 | 1027      | Mostafa    | Fouad     | 18                       |
-| 4 | 1010      | Nour       | Nabil     | 18                       |
-| 5 | 1065      | Adam       | Fahmy     | 17                       |
-| 6 | 1018      | Ahmed      | Shafik    | 17                       |
-| 7 | 1024      | Youssef    | Hegazy    | 17                       |
-| 8 | 1030      | Reem       | Osman     | 16                       |
-| 9 | 1047      | Sara       | Rashad    | 16                       |
-+---+-----------+------------+-----------+--------------------------+
+The code : 
+print("Question 4 : What are the most effective active readers ?")
+time.sleep(0.5)
+print("The answer : ")
+print()
+Q4 = """SELECT members.member_id,
+               members.first_name,
+               members.last_name,
+               COUNT(checkouts.checkout_id) AS the_number_of_borrowings
+FROM checkouts
+JOIN members ON checkouts.member_id = members.member_id
+GROUP BY members.first_name, members.last_name
+ORDER BY the_number_of_borrowings DESC LIMIT 10
+"""
+
+run(Q4)
+
+The Answer : 
++-------+-----------+------------+-----------+--------------------------+
+| Index | member_id | first_name | last_name | the_number_of_borrowings |
++-------+-----------+------------+-----------+--------------------------+
+
+| 0     | 1034      | Aya        | Wahba     | 25                       |
+| 1     | 1044      | Sherif     | Saleh     | 21                       |
+| 2     | 1008      | Ziad       | Saleh     | 19                       |
+| 3     | 1027      | Mostafa    | Fouad     | 18                       |
+| 4     | 1010      | Nour       | Nabil     | 18                       |
+| 5     | 1065      | Adam       | Fahmy     | 17                       |
+| 6     | 1018      | Ahmed      | Shafik    | 17                       |
+| 7     | 1024      | Youssef    | Hegazy    | 17                       |
+| 8     | 1030      | Reem       | Osman     | 16                       |
+| 9     | 1047      | Sara       | Rashad    | 16                       |
++-------+-----------+------------+-----------+--------------------------+
+
+The Description : 
+This dataset logs system interactions across 10 distinct entries (indexed 0 to 9), capturing four main attributes: a unique member_id, full member names, and their aggregate transaction history under the_number_of_borrowings. The metrics focus exclusively on an elite tier of highly active participants, showcasing dense, high-volume engagement that peaks at 25 checkouts by Aya Wahba and holds a remarkably high baseline of 16 transactions at its lowest visible point with Sara Rashad. Analytically, the minimal variance between records—with scores tightly clustered between 16 and 18 at the lower end—indicates a dedicated, uniform core user base whose strong platform interaction is further highlighted by collaborative household or family clusters, such as Sherif and Ziad Saleh combining for 40 total borrowings.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
 
 Question 5: What does a neighbourhood's activity look like further back in time? (Maadi)
+For the neighborhoods , I chose Maadi
 
-+---+-----------+------------+-----------+--------------+--------------------------+
-|   | member_id | first_name | last_name | neighborhood | the_number_of_borrowings |
-+---+-----------+------------+-----------+--------------+--------------------------+
-| 0 | 1019      | Mostafa    | Wahba     | Maadi        | 3                        |
-| 1 | 1002      | Fares      | Saleh     | Maadi        | 2                        |
-| 2 | 1011      | Menna      | Halim     | Maadi        | 2                        |
-| 3 | 1013      | Ziad       | Fouad     | Maadi        | 2                        |
-| 4 | 1017      | Adam       | Badr      | Maadi        | 2                        |
-| 5 | 1001      | Salma      | Ibrahim   | Maadi        | 1                        |
-| 6 | 1006      | Layla      | Mansour   | Maadi        | 1                        |
-| 7 | 1009      | Hassan     | Saleh     | Maadi        | 1                        |
-| 8 | 1014      | Habiba     | Nabil     | Maadi        | 1                        |
-| 9 | 1004      | Fares      | Wahba     | Maadi        | 0                        |
-+---+-----------+------------+-----------+--------------+--------------------------+
+The code :
+# Re-read members to get the number of unique values for each neighborhood and choose 1 neighbourhood
+members = run("SELECT * FROM members")
+neighborhoods_names = members["neighborhood"].value_counts()
+print(f"The available neighborhoods count : \n {neighborhoods_names}")
 
+# cleaning the column of the neighbourhood by giving them the right format
+members["neighborhood"] = members["neighborhood"].str.lower().str.title().str.strip()
+
+print("Unique neighborhoods AFTER cleaning:")
+print(members["neighborhood"].unique())
+
+members.to_sql("members", conn, if_exists="replace", index=False)
+print("\nDatabase 'members' table updated with cleaned neighbourhoods")
+print(members["neighborhood"].unique())
+
+members.to_sql("members", conn, if_exists="replace", index=False)
+print("\nDatabase 'members' table updated with cleaned neighborhoods.")
+
+print('Value counts AFTER cleaning (from DataFrame):')
+print(members["neighborhood"].value_counts())
+
+print("Question 5 : What does a neghboorhood's activity look like futher back in time ? (Maadi)")
+time.sleep(1)
+print("The answer : ")
+print()
+Q5 = """SELECT members.member_id,
+               members.first_name,
+               members.last_name,
+               members.neighborhood,
+               COUNT(checkouts.checkout_id) AS the_number_of_borrowings
+FROM members
+LEFT JOIN checkouts ON members.member_id = checkouts.member_id
+WHERE members.neighborhood = 'Maadi'
+GROUP BY members.member_id, members.first_name, members.last_name, members.neighborhood
+ORDER BY the_number_of_borrowings DESC LIMIT 10 OFFSET 10
+"""
+
+run(Q5)
+
+# The JOIN method has many types
+# defalt --> INNER
+# and the INNER JOIN couldn't join what I neeeded , so I used the LEFT JOIN
+
+The Answer : 
+
++-------+-----------+------------+-----------+--------------+--------------------------+
+| Index | member_id | first_name | last_name | neighborhood | the_number_of_borrowings |
++-------+-----------+------------+-----------+--------------+--------------------------+
+
+| 0     | 1019      | Mostafa    | Wahba     | Maadi        | 3                        |
+| 1     | 1002      | Fares      | Saleh     | Maadi        | 2                        |
+| 2     | 1011      | Menna      | Halim     | Maadi        | 2                        |
+| 3     | 1013      | Ziad       | Fouad     | Maadi        | 2                        |
+| 4     | 1017      | Adam       | Badr      | Maadi        | 2                        |
+| 5     | 1001      | Salma      | Ibrahim   | Maadi        | 1                        |
+| 6     | 1006      | Layla      | Mansour   | Maadi        | 1                        |
+| 7     | 1009      | Hassan     | Saleh     | Maadi        | 1                        |
+| 8     | 1014      | Habiba     | Nabil     | Maadi        | 1                        |
+| 9     | 1004      | Fares      | Wahba     | Maadi        | 0                        |
++-------+-----------+------------+-----------+--------------+--------------------------+
+
+The Description :
+This dataset structures inventory interactions across 10 distinct entries (indexed 0 to 9) tracking five main attributes: a unique member_id, full member names, a localized regional filter under neighborhood, and aggregate transaction histories under the_number_of_borrowings. Focused exclusively on the "Maadi" district, the metrics reveal a low-velocity engagement environment that peaks at just 3 checkouts by Mostafa Wahba and settles at 0 transactions for Fares Wahba. Analytically, the compressed distribution—with the vast majority of active participants clustered tightly between 1 and 2 borrowings—indicates a highly uniform, low-frequency usage pattern within this specific geographic segment, reflecting minimal operational variance across the tracked group.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Some details That I would need : 
 What is the difference between the API and web scraping?
 To begin with, Application Programming Interfaces (APIs) represent 2 fundamentally different approaches to data acquisition (data collection from websites). APIs provide a structured and efficient mechanism for data transfer, enabling direct access to specified data fields and the collection of data in an organised, machine-readable format (JSON files) at high speed. This ensures high reliability, but it is limited, and you can't collect all the data (limited data access by the API provider). You must also respect the website's terms and policies (robot.txt) and avoid making too many requests, so the website server doesn't stop.
 On the other hand, web scraping involves extracting data programmatically (parsing the full content of web pages, especially HTML tables). While web scraping offers broader access to any publicly visible data, it is less efficient, prone to data quality issues due to inconsistent formatting, and highly sensitive to changes in website structure. For the library case, I used web scraping because the website for the reading kick-off event doesn't have an API, so I used the pandas function pd.read_html().
@@ -104,12 +243,14 @@ On the other hand, web scraping involves extracting data programmatically (parsi
 What did I do in the notebook for task 1? 
 Task 1: Data Collection and Combination Processes 
 The Data collection and Combination process began by setting up the Python notebook and importing the necessary Python libraries, and the 3 data sources available to me are: an HTML website, an SQL database, and a JSON file. I imported the 3 sources of data and answered the 5 SQL questions by talking to the database using the SQLite 3 Python library and got all the answers, and after that, I began the combination process by following these steps : 
+
 1. Merged the checkouts and members tables in the SQL database.
 2. Merged the merged SQL dataset with the JSON file.
 3. Worked on the inconsistent formatting of the main columns (member_id, book_id, checkouts_id) to prevent any errors during the combination process.
 4. Merged the SQL JSON dataset with the HTML table
 
 "I used .merge () for the merging process."
+and how = "outer" to get all the rows and get all the data and do not lose anything
 
 And before the merging process, I used pd.read_html() for the web scraping through the Kick-off webpage.
 
