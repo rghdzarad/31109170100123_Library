@@ -197,12 +197,11 @@ Q5 = """SELECT members.member_id,
                members.first_name,
                members.last_name,
                members.neighborhood,
-               COUNT(checkouts.checkout_id) AS the_number_of_borrowings
+               checkouts.checkout_date
 FROM members
 LEFT JOIN checkouts ON members.member_id = checkouts.member_id
-WHERE members.neighborhood = 'Maadi'
-GROUP BY members.member_id, members.first_name, members.last_name, members.neighborhood
-ORDER BY the_number_of_borrowings DESC LIMIT 10 OFFSET 10
+WHERE members.neighborhood = 'Maadi' AND checkouts.checkout_date IS NOT NULL
+ORDER BY checkouts.checkout_date DESC LIMIT 10 OFFSET 10
 """
 
 run(Q5)
@@ -213,24 +212,25 @@ run(Q5)
 
 The Answer : 
 
-+-------+-----------+------------+-----------+--------------+--------------------------+
-| Index | member_id | first_name | last_name | neighborhood | the_number_of_borrowings |
-+-------+-----------+------------+-----------+--------------+--------------------------+
++-------+-----------+------------+-----------+--------------+---------------+
+| Index | member_id | first_name | last_name | neighborhood | checkout_date |
++-------+-----------+------------+-----------+--------------+---------------+
 
-| 0     | 1019      | Mostafa    | Wahba     | Maadi        | 3                        |
-| 1     | 1002      | Fares      | Saleh     | Maadi        | 2                        |
-| 2     | 1011      | Menna      | Halim     | Maadi        | 2                        |
-| 3     | 1013      | Ziad       | Fouad     | Maadi        | 2                        |
-| 4     | 1017      | Adam       | Badr      | Maadi        | 2                        |
-| 5     | 1001      | Salma      | Ibrahim   | Maadi        | 1                        |
-| 6     | 1006      | Layla      | Mansour   | Maadi        | 1                        |
-| 7     | 1009      | Hassan     | Saleh     | Maadi        | 1                        |
-| 8     | 1014      | Habiba     | Nabil     | Maadi        | 1                        |
-| 9     | 1004      | Fares      | Wahba     | Maadi        | 0                        |
-+-------+-----------+------------+-----------+--------------+--------------------------+
+| 0     | 1011      | Menna      | Halim     | Maadi        | 2025-10-02    |
+| 1     | 1003      | Bassel     | Hegazy    | Maadi        | 2025-09-17    |
+| 2     | 1010      | Nour       | Nabil     | Maadi        | 2025-09-08    |
+| 3     | 1003      | Bassel     | Hegazy    | Maadi        | 2025-09-04    |
+| 4     | 1010      | Nour       | Nabil     | Maadi        | 2025-09-02    |
+| 5     | 1010      | Nour       | Nabil     | Maadi        | 2025-08-27    |
+| 6     | 1017      | Adam       | Badr      | Maadi        | 2025-08-25    |
+| 7     | 1008      | Ziad       | Saleh     | Maadi        | 2025-08-23    |
+| 8     | 1003      | Bassel     | Hegazy    | Maadi        | 2025-08-21    |
+| 9     | 1018      | Ahmed      | Shafik    | Maadi        | 2025-08-19    |
++-------+-----------+------------+-----------+--------------+---------------+
+
 
 The Description :
-This dataset structures inventory interactions across 10 distinct entries (indexed 0 to 9) tracking five main attributes: a unique member_id, full member names, a localized regional filter under neighborhood, and aggregate transaction histories under the_number_of_borrowings. Focused exclusively on the "Maadi" district, the metrics reveal a low-velocity engagement environment that peaks at just 3 checkouts by Mostafa Wahba and settles at 0 transactions for Fares Wahba. Analytically, the compressed distribution—with the vast majority of active participants clustered tightly between 1 and 2 borrowings—indicates a highly uniform, low-frequency usage pattern within this specific geographic segment, reflecting minimal operational variance across the tracked group.
+This table shows library checkout records with 10 rows (from index 0 to 9) and includes details like member_id, full member names, the neighborhood, and the checkout_date. The records are sorted by date from the most recent one (October 2, 2025) down to the oldest one (August 19, 2025). Looking at the data for the "Maadi" neighborhood, we can see that library activity is mostly driven by a few very active users. For example, Nour Nabil and Bassel Hegazy appear three times each in just six weeks, which proves that certain members use the system much more regularly than others.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
